@@ -19,6 +19,17 @@ Brewline собирает заказы в единую цифровую очер
 бариста меняет статус → backend сохраняет изменение → все экраны получают новый снимок очереди
 ```
 
+## Репозитории
+
+| Репозиторий                                                         | Роль                                                                |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`brewline-backend`](https://github.com/Nikolskii/brewline-backend) | REST API, бизнес-правила, MongoDB, SSE и источник OpenAPI-контракта |
+| [`brewline-client`](https://github.com/Nikolskii/brewline-client)   | Веб-форма заказа и просмотр клиентом статуса своего заказа          |
+| [`brewline-barista`](https://github.com/Nikolskii/brewline-barista) | Рабочее место бариста: вход, просмотр очереди и смена статусов      |
+| [`brewline-display`](https://github.com/Nikolskii/brewline-display) | Публичное табло с live-обновлением очереди                          |
+| [`brewline-infra`](https://github.com/Nikolskii/brewline-infra)     | Общая инфраструктура, MongoDB и будущий деплой в k3s                |
+| [`brewline-docs`](https://github.com/Nikolskii/brewline-docs)       | Архитектурный обзор, описания компонентов, диаграммы и ADR          |
+
 ## Что уже работает
 
 - единая очередь заказов в MongoDB;
@@ -47,17 +58,6 @@ flowchart LR
 Backend владеет заказами и выступает единым источником истины. После изменения статуса он отправляет не отдельное событие-дельту, а канонический снимок очереди. Благодаря этому интерфейсы не собирают состояние самостоятельно и показывают одинаковые данные.
 
 Система разделена по контейнерам C4 на независимые репозитории. Это добавляет задачи по версионированию контракта, настройке адресов и CI/CD, но позволяет отработать устройство, близкое к реальной разработке нескольких сервисов.
-
-## Репозитории
-
-| Репозиторий                                                         | Роль                                                                |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`brewline-backend`](https://github.com/Nikolskii/brewline-backend) | REST API, бизнес-правила, MongoDB, SSE и источник OpenAPI-контракта |
-| [`brewline-client`](https://github.com/Nikolskii/brewline-client)   | Веб-форма заказа и просмотр клиентом статуса своего заказа          |
-| [`brewline-barista`](https://github.com/Nikolskii/brewline-barista) | Рабочее место бариста: вход, просмотр очереди и смена статусов      |
-| [`brewline-display`](https://github.com/Nikolskii/brewline-display) | Публичное табло с live-обновлением очереди                          |
-| [`brewline-infra`](https://github.com/Nikolskii/brewline-infra)     | Общая инфраструктура, MongoDB и будущий деплой в k3s                |
-| [`brewline-docs`](https://github.com/Nikolskii/brewline-docs)       | Архитектурный обзор, описания компонентов, диаграммы и ADR          |
 
 ## Технологии
 
